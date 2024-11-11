@@ -5,17 +5,21 @@ import (
 	"fmt"
 	"html"
 	"net/http"
+
 	"strconv"
 	"strings"
 	"time"
 
-	"github.com/Kassimali/romanNumerals"
+	"github.com/Kassimali/romanserver/romanNumerals"
 )
 
 func main() {
 	// http package has methods for dealing with requests
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+
 		urlPathElements := strings.Split(r.URL.Path, "/")
+		fmt.Println(urlPathElements[2])
+		//fmt.Println(urlPathElements[0], urlPathElements[1])
 		// If request is GET with correct syntax
 		if urlPathElements[1] == "roman_number" {
 			number, _ := strconv.Atoi(strings.TrimSpace(urlPathElements[2]))
